@@ -1,4 +1,4 @@
-from endereco import Endereco
+from project.models.endereco import Endereco
 from abc import ABC,abstractmethod
 
 class Funcionario(ABC):
@@ -10,7 +10,7 @@ class Funcionario(ABC):
         self.endereco = endereco
 
     @abstractmethod
-    def salarioFinal() -> float: 
+    def salarioFinal(self, salario) -> float: 
         pass
 
     def __str__(self) -> str:
