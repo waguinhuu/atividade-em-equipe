@@ -18,8 +18,25 @@ def test_validar_telefone(medico_valido):
 def test_validar_email(medico_valido):
     assert medico_valido.email == "wagnersi@gmail.com"
 
+def test_validar_crm(medico_valido):
+    assert medico_valido.crm == "123"
+
+def test_validar_endereco(medico_valido):
+    assert medico_valido.endereco.logadouro == "Rua A"
+    assert medico_valido.endereco.numero == "91"
+    assert medico_valido.endereco.complemento == "casa"
+    assert medico_valido.endereco.cidade == "Salvador"
+    assert medico_valido.endereco.cep == "4300202-00"
+
+"""TESTES PARA VERIFICAÇÂO DO SALÁRIO"""
 def test_salario_negativo():
     medico = Medico("Wagner", "9191919", "wagnersi@gmail.com",
         Endereco("Rua A", "91", "casa", "4300202-00","Salvador"),"123")
-    with pytest.raises(ValueError, match="Valor não pode ser negativo"):
+    with pytest.raises(ValueError, match="O valor não pode ser negativo."):
         medico.salarioFinal(-1)
+
+def test_salario_tipo_invalido():
+    medico = Medico("Wagner", "9191919", "wagnersi@gmail.com",
+        Endereco("Rua A", "91", "casa", "4300202-00","Salvador"),"123")
+    with pytest.raises(TypeError, match="O valor não pode ser em texto."):
+        medico.salarioFinal("2000")

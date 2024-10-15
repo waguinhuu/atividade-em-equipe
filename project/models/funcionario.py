@@ -10,7 +10,12 @@ class Funcionario(ABC):
         self.endereco = endereco
 
     @abstractmethod
-    def salarioFinal(self, salario) -> float: 
+    def salarioFinal(self, salario) -> float:
+        if not isinstance(salario, (int, float)):
+            raise TypeError("O valor não pode ser em texto.")
+
+        if salario < 0:
+            raise ValueError("O valor não pode ser negativo.") 
         pass
 
     def __str__(self) -> str:
